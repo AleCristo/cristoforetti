@@ -145,10 +145,31 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <label for="address" class="form-label">Password</label>
-                                    <input type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" class="form-control" id="password" placeholder="password" required>
+                                    <label for="Password" class="form-label">Password</label>
+                                    <input type="Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" class="form-control" id="password" placeholder="password" required>
                                     <div class="invalid-feedback">
-                                        Please enter your shipping address.
+                                        Please enter your password (min 8 characters, at least one upper case and one number)
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <label for="address" class="form-label">Phone Number</label>
+                                    <input type="text" pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$" class="form-control" id="number" placeholder="number" required>
+                                    <div class="invalid-feedback">
+                                        Please enter your phone number.
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <label for="cf" class="form-label">Fiscal Code</label>
+                                    <input type="text" pattern="^([A-Z]{6}[0-9LMNPQRSTUV]{2}[ABCDEHLMPRST]{1}[0-9LMNPQRSTUV]{2}[A-Z]{1}[0-9LMNPQRSTUV]{3}[A-Z]{1})$|([0-9]{11})$" class="form-control" id="cf" placeholder="cf" required>
+                                    <div class="invalid-feedback">
+                                        Please enter your fiscal code.
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <label for="date" class="form-label">Birth Date</label>
+                                    <input type="date" pattern="" class="form-control" id="date" placeholder="date" required>
+                                    <div class="invalid-feedback">
+                                        Please enter your birth date.
                                     </div>
                                 </div>
                                 <div class="col-md-5">

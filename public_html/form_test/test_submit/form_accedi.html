@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <title>Accedi</title>
+    </head>
+    <body>
+        <form name="frmAccedi" action="altra_pagina.php" method="get">
+            <label>Email</label>                  
+            <input type="text" name="txtEmail" id="txtEmail" required="" maxlength="50" pattern="[a-z]{3,20}\.[a-z]{3,20}[0-9]*">
+            <input type="text" name="txtDominio" id="txtDominio" value="@buonarroti.tn.it" readonly="">
+            <br><br>         
+            <input type="submit" name="btnAccedi" value="Accedi">
+            <script>
+                email = document.getElementById("txtEmail");
+                dominio = document.getElementById("txtDominio")
+
+                function validaEmail() {                  
+                    testo = email.value;
+                   
+                    if (testo.lastIndexOf("@") != -1)
+                        email.setCustomValidity("Rispetta il formato richiesto..");
+                    
+                }
+                
+                function sommaEmail () {
+                    testo = email.value + dominio.value;
+                    email.value = testo;
+                }
+                
+                email.onkeyup = validaEmail();
+                email.onkeyup = sommaEmail();
+                
+            </script>
+        </form>
+    </body>
+</html>

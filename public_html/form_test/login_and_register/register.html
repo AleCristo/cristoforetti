@@ -100,11 +100,11 @@
                     <div class="col-md-7 col-lg-8">
                         <br><br>
                         <h4 class="mb-3">Register</h4>
-                        <form class="needs-validation" novalidate target="_blank" action="index.html">
+                        <form class="needs-validation" novalidate target="_blank" action="index.html" method="get">
                             <div class="row g-3">
                                 <div class="col-sm-6">
                                     <label for="firstName" class="form-label">First name</label>
-                                    <input type="text" pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" class="form-control" id="firstName" placeholder="" value="" required>
+                                    <input type="text" pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" class="form-control" name="firstName" id="firstName" placeholder="" value="" required>
                                     <div class="invalid-feedback">
                                         Valid first name is required.
                                     </div>
@@ -112,7 +112,7 @@
 
                                 <div class="col-sm-6">
                                     <label for="lastName" class="form-label">Last name</label>
-                                    <input type="text" pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" class="form-control" id="lastName" placeholder="" value="" required>
+                                    <input type="text" pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" class="form-control" name="lastName" id="lastName" placeholder="" value="" required>
                                     <div class="invalid-feedback">
                                         Valid last name is required.
                                     </div>
@@ -122,7 +122,7 @@
                                     <label for="username" class="form-label">Username</label>
                                     <div class="input-group has-validation">
                                         <span class="input-group-text">@</span>
-                                        <input type="text" class="form-control" id="username" placeholder="Username" required>
+                                        <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
                                         <div class="invalid-feedback">
                                             Your username is required.
                                         </div>
@@ -131,7 +131,7 @@
                                 
                                 <div class="col-12">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="gmail" pattern="[A-z0-9\.\+_-]+@buonarroti.tn.it{1}" class="form-control" id="address" placeholder="name@buonarroti.tn.it" required>
+                                    <input type="gmail" pattern="[A-z0-9\.\+_-]+@buonarroti.tn.it{1}" class="form-control" name="email" id="email" placeholder="name@buonarroti.tn.it" required>
                                     <div class="invalid-feedback">
                                         Please enter your shipping address.
                                     </div>
@@ -139,7 +139,7 @@
                                 
                                 <div class="col-12">
                                     <label for="address" class="form-label">Address</label>
-                                    <input type="text" pattern="[1-9]+ [A-Za-z]+ [A-Za-z]+" class="form-control" id="address" placeholder="1234 Main St" required>
+                                    <input type="text" pattern="[1-9]+ [A-Za-z]+ [A-Za-z]+" class="form-control" name="address" id="address" placeholder="1234 Main St" required>
                                     <div class="invalid-feedback">
                                         Please enter your shipping address.
                                     </div>
@@ -147,7 +147,7 @@
                                 
                                 <div class="col-12">
                                     <label for="Password" class="form-label">Password</label>
-                                    <input type="Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" class="form-control" id="password" placeholder="password" required>
+                                    <input type="Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" class="form-control" name="password" id="password" placeholder="password" required>
                                     <div class="invalid-feedback">
                                         Please enter your password (min 8 characters, at least one upper case and one number, no special characters)
                                     </div>
@@ -155,7 +155,7 @@
                                 
                                 <div class="col-12">
                                     <label for="address" class="form-label">Phone Number</label>
-                                    <input type="text" pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$" class="form-control" id="number" placeholder="number" required>
+                                    <input type="text" pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$" class="form-control" name="number" id="number" placeholder="number" required>
                                     <div class="invalid-feedback">
                                         Please enter your phone number.
                                     </div>
@@ -163,7 +163,7 @@
                                 
                                 <div class="col-12">
                                     <label for="cf" class="form-label">Fiscal Code</label>
-                                    <input type="text" pattern="^([A-Z]{6}[0-9LMNPQRSTUV]{2}[ABCDEHLMPRST]{1}[0-9LMNPQRSTUV]{2}[A-Z]{1}[0-9LMNPQRSTUV]{3}[A-Z]{1})$|([0-9]{11})$" class="form-control" id="cf" placeholder="cf" required>
+                                    <input type="text" pattern="^([A-Z]{6}[0-9LMNPQRSTUV]{2}[ABCDEHLMPRST]{1}[0-9LMNPQRSTUV]{2}[A-Z]{1}[0-9LMNPQRSTUV]{3}[A-Z]{1})$|([0-9]{11})$" name="number" class="form-control" id="cf" placeholder="cf" required>
                                     <div class="invalid-feedback">
                                         Please enter your fiscal code.
                                     </div>
@@ -171,7 +171,7 @@
                                 
                                 <div class="col-12">
                                     <label for="date" class="form-label">Birth Date</label>
-                                    <input type="date" pattern="" class="form-control" id="date" placeholder="date" required>
+                                    <input type="date" pattern="" class="form-control" name="date" id="date"  placeholder="date" required>
                                     <div class="invalid-feedback">
                                         Please enter your birth date.
                                     </div>

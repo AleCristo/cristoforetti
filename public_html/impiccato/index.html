@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en" class="h-100">
+    <head>
+        <title>L'impiccato</title>
+
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/cover/">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+        <style>
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                user-select: none;
+            }
+
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                    font-size: 3.5rem;
+                }
+            }
+
+            .b-example-divider {
+                height: 3rem;
+                background-color: rgba(0, 0, 0, .1);
+                border: solid rgba(0, 0, 0, .15);
+                border-width: 1px 0;
+                box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+            }
+
+            .b-example-vr {
+                flex-shrink: 0;
+                width: 1.5rem;
+                height: 100vh;
+            }
+
+            .bi {
+                vertical-align: -.125em;
+                fill: currentColor;
+            }
+
+            .nav-scroller {
+                position: relative;
+                z-index: 2;
+                height: 2.75rem;
+                overflow-y: hidden;
+            }
+
+            .nav-scroller .nav {
+                display: flex;
+                flex-wrap: nowrap;
+                padding-bottom: 1rem;
+                margin-top: -1px;
+                overflow-x: auto;
+                text-align: center;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+            }
+        </style>
+
+
+        <!-- Custom styles for this template -->
+        <link href="cover.css" rel="stylesheet">     
+    </head>
+    <body class="d-flex h-100 text-center text-bg-dark">
+        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+            <div class ="text-center">
+                <p id="testo" class="display-6">_ _ _ _ _ _</p>
+                <br><br>
+                <div class="container">
+                    <img id="img" src="assets/f0.png" width="500" height="500" class="mb-4" alt=""/>
+                </div>
+                <label for="exampleSelect" class="form-label">Select menu</label>
+                <select class="form-select" id="select">
+                    <option value="0" selected disabled>Open this to select a letter.</option>
+                    <option value="1">A</option>
+                    <option value="2">B</option>
+                    <option value="3">C</option>
+                    <option value="4">D</option>
+                    <option value="5">E</option>
+                    <option value="6">F</option>
+                    <option value="7">G</option>
+                    <option value="8">H</option>
+                    <option value="9">I</option>
+                    <option value="10">J</option>
+                    <option value="11">K</option>
+                    <option value="12">L</option>
+                    <option value="13">M</option>
+                    <option value="14">N</option>
+                    <option value="15">O</option>
+                    <option value="16">P</option>
+                    <option value="17">Q</option>
+                    <option value="18">R</option>
+                    <option value="19">S</option>
+                    <option value="20">T</option>
+                    <option value="21">U</option>
+                    <option value="22">V</option>
+                    <option value="23">W</option>
+                    <option value="24">X</option>
+                    <option value="25">Y</option>
+                    <option value="26">Z</option>
+                </select>
+                <button id="btnConfirm" type="button" onclick="gioco();" class="btn btn-primary">Confirm</button>
+            </div>
+            <footer class="mt-auto text-white-50">
+                <p><a>by Cristoforetti Alessio using bootStrap</a>.</p>
+            </footer>
+        </div>
+    </body>
+
+    <script>
+
+        var stadio = 1;
+        var parola = ['G', 'I', 'N', 'O'];
+        var trovato = [parola.length];
+
+        for (var i = 0; i < parola.length; i++) {
+            trovato[i] = false;
+        }
+
+        var select = document.getElementById("select");
+        var testo = document.getElementById("testo");
+        var img = document.getElementById("img");
+        var iniziale = "";
+        
+        for (var j = 0; j < parola.length; j++) {
+                iniziale = iniziale + "_ ";
+        }
+        testo.innerHTML = iniziale;
+
+        function gioco() {
+            var text = select.options[select.selectedIndex].text;
+
+            var newTxt = "";
+            var cond = false;
+            var i = 0;
+
+            while (i < parola.length) {
+                if (parola[i] === text) {
+                    cond = true;
+                    trovato[i] = true;
+                }
+                i++;
+            }
+
+            if (cond === false) {
+                img.src = ("assets/f" + stadio + ".png");
+                stadio++;
+            }
+
+            if (stadio == 8) {
+                alert("Hai perso fallito!!!!!")
+            }
+
+            cond = true;
+
+            for (var j = 0; j < parola.length; j++) {
+                if (trovato[j] == true) {
+                    newTxt = newTxt + parola[j] + " ";
+                } else {
+                    cond = false
+                    newTxt = newTxt + "_ ";
+                }
+            }
+
+            if (cond == true) {
+                alert("Hai vinto!!!!!")
+            }
+
+            testo.innerHTML = newTxt;
+        }
+
+    </script>
+
+</html>

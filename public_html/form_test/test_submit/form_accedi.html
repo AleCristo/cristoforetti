@@ -12,7 +12,6 @@
             <input type="submit" name="btnAccedi" value="Accedi">
             <script>
                 email = document.getElementById("txtEmail");
-                dominio = document.getElementById("txtDominio")
 
                 function validaEmail() {                  
                     testo = email.value;
@@ -22,13 +21,14 @@
                     
                 }
                 
-                function sommaEmail () {
-                    testo = email.value + dominio.value;
-                    email.value = testo;
-                }
-                
                 email.onkeyup = validaEmail();
-                email.onkeyup = sommaEmail();
+                
+                form = document.getElementById("frmAccedi");
+                
+                form.onsubmit = function(){
+                    dominio = document.getElementById("txtDominio");
+                    email.value = email.value + dominio.value;
+                }
                 
             </script>
         </form>

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en" class="h-100">
+    <head>
+        <title>L'impiccato</title>
+
+        <link href="../bootstrap_test/bootstrapCss/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <style>
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                user-select: none;
+            }
+
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                    font-size: 3.5rem;
+                }
+            }
+
+            .b-example-divider {
+                height: 3rem;
+                background-color: rgba(0, 0, 0, .1);
+                border: solid rgba(0, 0, 0, .15);
+                border-width: 1px 0;
+                box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+            }
+
+            .b-example-vr {
+                flex-shrink: 0;
+                width: 1.5rem;
+                height: 100vh;
+            }
+
+            .bi {
+                vertical-align: -.125em;
+                fill: currentColor;
+            }
+
+            .nav-scroller {
+                position: relative;
+                z-index: 2;
+                height: 2.75rem;
+                overflow-y: hidden;
+            }
+
+            .nav-scroller .nav {
+                display: flex;
+                flex-wrap: nowrap;
+                padding-bottom: 1rem;
+                margin-top: -1px;
+                overflow-x: auto;
+                text-align: center;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+            }
+        </style>
+
+
+        <!-- Custom styles for this template -->
+        <link href="cover.css" rel="stylesheet">     
+    </head>
+    <body class="d-flex h-100 text-center text-bg-dark">
+        <div class="container h-100">
+            <div class="row h-100 justify-content-center align-items-center">
+                <form class="col-12">
+                    <div class="form-group">
+                        <button id="btnReaload" type="button" onclick="location.href='login.html'" class="btn btn-secondary">Reload</button>
+                        <br><br><br>
+                        <p id="testo" class="display-6"></p>
+                        <br><br>
+                        <label for="exampleSelect" class="form-label">Insert a number</label>
+                        <input type="number" id="number" name="number" min="10" max="100">
+                        <br>
+                        <button id="btnConfirm" type="button" onclick="gioco();" class="btn btn-primary">Confirm</button>                    </div>
+                </form>   
+            </div>
+        </div>
+    </body>
+
+    <script>
+        
+        var n1 = Math.floor(Math.random() * 101); //0-100
+        var n2 = Math.floor(Math.random() * 101); //0-100
+        var op = Math.floor(Math.random() * 4); //0-3
+        var result;
+        
+        
+        switch(op){
+            case 0:
+                op = '+'
+                result = n1+n2;
+                break;
+            case 1:
+                op = '*'
+                result = n1*n2;
+                break;
+            case 2:
+                op = '-'
+                result = n1-n2;
+                break;
+            case 3:
+                op = '/'
+                result = n1/n2;
+                break;
+        }
+        
+        function gioco() {
+            number = document.getElementById("number");
+            var tentativo = number.value;
+            
+            if(tentativo == result){
+                alert("Hai Vinto!");
+            }
+        }
+        
+        var testo = document.getElementById("testo");
+        testo.innerHTML = n1 + " " + op + " " + n2 + " = _";
+    </script>
+
+</html>

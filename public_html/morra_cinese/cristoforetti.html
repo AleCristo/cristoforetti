@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Morra Cinese</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap.min.js" rel="stylesheet">
+        <link href="css/signin.css" rel="stylesheet">
+
+        <style>
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                user-select: none;
+            }
+
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                    font-size: 3.5rem;
+                }
+            }
+
+            .b-example-divider {
+                height: 3rem;
+                background-color: rgba(0, 0, 0, .1);
+                border: solid rgba(0, 0, 0, .15);
+                border-width: 1px 0;
+                box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+            }
+
+            .b-example-vr {
+                flex-shrink: 0;
+                width: 1.5rem;
+                height: 100vh;
+            }
+
+            .center {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .bi {
+                vertical-align: -.125em;
+                fill: currentColor;
+            }
+
+            .nav-scroller {
+                position: relative;
+                z-index: 2;
+                height: 2.75rem;
+                overflow-y: hidden;
+            }
+
+            .nav-scroller .nav {
+                display: flex;
+                flex-wrap: nowrap;
+                padding-bottom: 1rem;
+                margin-top: -1px;
+                overflow-x: auto;
+                text-align: center;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+            }
+        </style>
+
+
+        <link href="css/signin.css" rel="stylesheet">
+    </head>
+    <body class="text-center">
+        <main class="form-signin w-100 m-auto">
+            <h1 class="h3 mb-3 fw-normal" id="initialTxt" hidden="" >Inserire le informazioni richieste:</h1>
+            <h2 class="h3 mb-3 fw-normal" id="secondaryTxt" hidden="" >Scegli la tua mossa:</h2>
+            <br><br>
+            <img class="mb-4" id="mainImg" src="img/carta_forbice_sasso.png" hidden="" alt="" usemap="#image-map">
+            <map name="image-map">
+                <area coords="238,325,63,171" shape="rect" onclick="area(0)">
+                <area coords="1,0,180,129"    shape="rect" onclick="area(1)">
+                <area coords="399,167,265,45" shape="rect" onclick="area(2)">
+            </map>
+            <table id="table" class="table-responsive,center" hidden="">
+                <tr>
+                    <td>
+                        <img class="mb-4" id="secondaryImgOne" src="t" hidden="" alt="" width="300" height="300">
+                    </td>
+                    <td>
+                        <img class="mb-4" id="secondaryImgTwo" src="t" hidden="" alt="" width="300" height="300">
+                    </td>
+                </tr>
+            </table>
+            <div class="form-floating">
+                <input type="text" class="form-control" id="userName" placeholder="name" required="" hidden="">
+                <label for="userName" hidden="" id="tagName">Username</label>
+            </div>
+            <div class="form-floating">
+                <input type="number" class="form-control" id="turnNumber" placeholder="1-10" required="" hidden="">
+                <label for="turnNumber" hidden="" id="tagNumber">Numero Giocate</label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" id="startBtn" onclick="play()" type="button" hidden="">Play</button>
+            <button class="w-100 btn btn-lg btn-primary" id="continueBtn" onclick="nextTurn()" type="button" hidden="">Continue</button>
+            <h2 class="h3 mb-3 fw-normal" id="punteggio" hidden="" >Punteggio: 0</h2>
+        </main>
+
+        <script>
+ 
+            username = document.getElementById('userName');
+            username.hidden = false;
+            turnTot = document.getElementById('turnNumber');
+            turnTot.hidden = false;
+            document.getElementById('initialTxt').hidden = false;
+            document.getElementById('startBtn').hidden = false;
+            document.getElementById('tagNumber').hidden = false;
+            document.getElementById('tagName').hidden = false;
+            var scelta = -1;
+            var turn = 0;
+            var punteggio = 0;
+            // 0 carta - 1 forbici - 2 sasso
+
+            function play() {
+                if (control()) {
+                    username.hidden = true;
+                    turnTot.hidden = true;
+                    document.getElementById('initialTxt').innerHTML = "Benvenuto " + username.value + " nella Morra Cinese";
+                    document.getElementById('startBtn').hidden = true;
+                    document.getElementById('tagNumber').hidden = true;
+                    document.getElementById('tagName').hidden = true;
+                    document.getElementById('mainImg').hidden = false;
+                    document.getElementById('secondaryTxt').hidden = false;
+                    document.getElementById('punteggio').hidden = false;
+                }
+            }
+
+            function control() {
+                if (username.value != null && username.value != "") {
+                    if (turnTot.value > 0 && turnTot.value < 10) {
+                        return true;
+                    } else {
+                        alert("incorrect turn value!");
+                    }
+                } else {
+                    alert("incorrect username value!");
+                }
+            }
+
+            function area(n) {
+                if (turn >= turnTot.value) {
+                    reset();
+                } else {
+                    turn++;
+                    scelta = n;
+                    sceltaPc = Math.floor(Math.random() * 3);
+                    document.getElementById('secondaryTxt').hidden = true;
+                    document.getElementById('mainImg').hidden = true;
+                    document.getElementById('table').hidden = false;
+                    document.getElementById('secondaryImgOne').hidden = false;
+                    document.getElementById('secondaryImgTwo').hidden = false;
+                    var vincitore;
+                    switch (scelta) {
+                        case 0:
+                            document.getElementById('secondaryImgOne').src = "img/carta_sx.png";
+                            switch (sceltaPc) {
+                                case 0:
+                                    document.getElementById('secondaryImgTwo').src = "img/carta_dx.png";
+                                    vincitore = "patta";
+                                    break;
+                                case 1:
+                                    document.getElementById('secondaryImgTwo').src = "img/forbice_dx.png";
+                                    vincitore = "ha vinto pc";
+                                    break;
+                                case 2:
+                                    document.getElementById('secondaryImgTwo').src = "img/sasso_dx.png";
+                                    vincitore = "ha vinto " + username.value;
+                                    punteggio++;
+                                    break;
+                            }
+                            break;
+                        case 1:
+                            document.getElementById('secondaryImgOne').src = "img/forbice_sx.png";
+                            switch (sceltaPc) {
+                                case 0:
+                                    document.getElementById('secondaryImgTwo').src = "img/carta_dx.png";
+                                    vincitore = "ha vinto " + username.value;
+                                    punteggio++;
+                                    break;
+                                case 1:
+                                    document.getElementById('secondaryImgTwo').src = "img/forbice_dx.png";
+                                    vincitore = "patta";
+                                    break;
+                                case 2:
+                                    document.getElementById('secondaryImgTwo').src = "img/sasso_dx.png";
+                                    vincitore = "ha vinto pc";
+                                    break;
+                            }
+                            break;
+                        case 2:
+                            document.getElementById('secondaryImgOne').src = "img/sasso_sx.png";
+                            switch (sceltaPc) {
+                                case 0:
+                                    vincitore = "ha vinto pc";
+                                    document.getElementById('secondaryImgTwo').src = "img/carta_dx.png";
+                                    break;
+                                case 1:
+                                    vincitore = "ha vinto " + username.value;
+                                    document.getElementById('secondaryImgTwo').src = "img/forbice_dx.png";
+                                    punteggio++;
+                                    break;
+                                case 2:
+                                    vincitore = "patta";
+                                    document.getElementById('secondaryImgTwo').src = "img/sasso_dx.png";
+                                    break;
+                            }
+                            break;
+                    }
+
+                    document.getElementById('continueBtn').hidden = false;
+                    document.getElementById('initialTxt').innerHTML = vincitore;
+                    document.getElementById('punteggio').innerHTML = "Punteggio: " + punteggio;
+                }
+            }
+
+            function nextTurn() {
+                document.getElementById('secondaryTxt').hidden = false;
+                document.getElementById('mainImg').hidden = true;
+                document.getElementById('table').hidden = true;
+                document.getElementById('secondaryImgOne').hidden = true;
+                document.getElementById('secondaryImgTwo').hidden = true;
+                document.getElementById('continueBtn').hidden = true;
+                document.getElementById('punteggio').hidden = true;
+                play();
+            }
+
+            function reset() {
+                document.getElementById('secondaryTxt').hidden = true;
+                document.getElementById('mainImg').hidden = true;
+                ;
+                document.getElementById('punteggio').hidden = true;
+                document.getElementById('initialTxt').innerHTML = "Gioco finito, " + username.value + " hai totalizzato " + punteggio + " punti";
+                document.getElementById('startBtn').hidden = false;
+                scelta = -1;
+                turn = 0;
+                punteggio = 0;
+                document.getElementById('punteggio').innerHTML = "Punteggio: " + punteggio;
+            }
+        </script>
+    </body>
+</html>
